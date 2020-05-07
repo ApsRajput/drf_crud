@@ -20,5 +20,6 @@ from .api import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/auth/', include("djoser.urls.authtoken")),
     path('api/', include(router.urls)),
 ]
