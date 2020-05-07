@@ -1,4 +1,11 @@
 from django.db import models
+from django.conf import settings
+
+class OwnedModel(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
 
 class Friend(models.Model):
     name = models.CharField(max_length=100)
@@ -7,7 +14,7 @@ class Friend(models.Model):
         return self.name
     
 
-class Belonging(models.Model):
+class Belonging(OwnedModel):
     name = models.CharField(max_length=100)
 
     def __str__(self):
