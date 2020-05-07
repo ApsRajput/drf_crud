@@ -19,7 +19,6 @@ class Belonging(OwnedModel):
 
     def __str__(self):
         return self.name
-    
 
 class Borrowed(models.Model):
     name = models.CharField(max_length=50)
