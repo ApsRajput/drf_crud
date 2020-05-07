@@ -1,22 +1,26 @@
 from django.db import models
-from django.conf import settings
-from django.utils import timezone
 
-# Create your models here.
-class Author(models.Model):
-  name = models.CharField(max_length=200)
-  added_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-  created_date = models.DateTimeField(default=timezone.now)
+class Friend(models.Model):
+    name = models.CharField(max_length=100)
 
-  def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
+    
 
-class Book(models.Model):
-  title = models.CharField(max_length=200)
-  description = models.CharField(max_length=300)  
-  author = models.ForeignKey(Author, on_delete=models.CASCADE)
-  added_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-  created_date = models.DateTimeField(default=timezone.now)
+class Belonging(models.Model):
+    name = models.CharField(max_length=100)
 
-  def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.name
+    
+
+class Borrowed(models.Model):
+    name = models.CharField(max_length=50)
+    what = models.ForeignKey(Belonging, on_delete=models.CASCADE)
+    to_who = models.ForeignKey(Friend, on_delete=models.CASCADE)
+    when = models.DateTimeField(auto_now_add=True)
+    returned = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+    

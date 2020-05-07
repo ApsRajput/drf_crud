@@ -1,12 +1,17 @@
 from rest_framework import serializers
-from .models import Author, Book
+from . import models
 
-class AuthorSerializer(serializers.ModelSerializer):
+class FriendSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Author
-        fields = ['id', 'name', 'added_by', 'created_by']
+        model = models.Friend
+        fields = ('id', 'name')
 
-class BookSerializer(serializers.ModelSerializer):
+class BelongingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Book
-        fields = ['id', 'title', 'description', 'created_date', 'author', 'added_by']
+        model = models.Belonging
+        fields = ('id', 'name')
+
+class BorrowedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Borrowed
+        fields = ('id', 'name', 'what', 'to_who', 'when', 'returned')
