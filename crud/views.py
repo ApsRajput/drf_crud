@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions
 from . import models
 from . import serializers
 
+#  ModelViewsets
 class FriendViewset(viewsets.ModelViewSet):
     queryset = models.Friend.objects.all()
     serializer_class = serializers.FriendSerializer
