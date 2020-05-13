@@ -1,6 +1,8 @@
 from django.urls import include, path
-from .views import hello_world
+from crud import views
 
 urlpatterns = [
-    path('', hello_world, name="hello_world")
+    path('', views.hello_world, name="hello_world"),
+    path('friends', views.FriendGenericslc.as_view(), name="friends"),
+    path('friendso/<int:pk>', views.FriendGenericsrud.as_view(), name="friendso")
 ]
