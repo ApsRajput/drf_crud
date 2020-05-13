@@ -1,4 +1,3 @@
 db.sqlite3
 DRF_CRUD/__pycache__
 crud/__pycache__
-crud/migrations
