@@ -2,7 +2,21 @@ from .permissions import IsOwner
 from rest_framework import viewsets, permissions
 from . import models
 from . import serializers
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
+@api_view(["GET", "POST"])
+def hello_world(request):
+    if request.method == "GET":
+        return Response({"message": "Hello World!"})
+
+    else:
+        name = request.data.get("name")
+        if not name:
+            return Response({"error": "No name passed"})
+        return Response({"message": "Hello {}!".format(name)})
+
+#  ModelViewsets
 class FriendViewset(viewsets.ModelViewSet):
     queryset = models.Friend.objects.all()
     serializer_class = serializers.FriendSerializer
