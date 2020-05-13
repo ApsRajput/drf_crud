@@ -21,6 +21,6 @@ from .api import router
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include("djoser.urls.authtoken")),
-    path('hello/', include("crud.urls")),
+    path('crud/', include("crud.urls")),
     path('api/', include(router.urls)),
 ]
