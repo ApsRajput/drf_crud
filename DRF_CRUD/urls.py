@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .api import router
+from crud.views import FriendGenericslc
 # from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include("djoser.urls.authtoken")),
+    path('', FriendGenericslc.as_view(), name="friends"),
+    path('auth/', include("djoser.urls.authtoken")),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('crud/', include("crud.urls")),
     path('api/', include(router.urls)),
+    path('', include('social_django.urls', namespace='social')),
 ]
