@@ -39,7 +39,7 @@ class FriendGenericslc(generics.ListCreateAPIView):
     serializer_class = serializers.FriendSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class FriendGenericsrud(generics.ListCreateAPIView):
+class FriendGenericsrud(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Friend.objects.all()
     serializer_class = serializers.FriendSerializer
     permission_classes = [permissions.IsAuthenticated]
