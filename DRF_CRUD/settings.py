@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'social_django',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -105,7 +109,7 @@ WSGI_APPLICATION = 'DRF_CRUD.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydb',
+        'NAME': 'myname',
         'USER': 'myuser',
         'PASSWORD': 'mypass',
         'HOST': 'localhost',
@@ -186,3 +190,8 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'replace_me_with_your_key'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'replace_me_with_your_secret'
+
+# CORS
+CORS_ORIGIN_WHITELIST = (
+    'https://localhost:3000/'
+)
