@@ -43,3 +43,13 @@ class FriendGenericsrud(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Friend.objects.all()
     serializer_class = serializers.FriendSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class Teachers(generics.ListCreateAPIView):
+    queryset = models.Faculty.objects.all()
+    serializer_class = serializers.FacultySerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+class Class(generics.ListCreateAPIView):
+    queryset = models.Faculty.objects.all()
+    serializer_class = serializers.Student_ClassSerializer
+    # permission_classes = [permissions.IsAuthenticated]
