@@ -33,6 +33,25 @@ class BorrowedViewset(viewsets.ModelViewSet):
     serializer_class = serializers.BorrowedSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+
+@api_view(['GET', 'POST'])
+def FriendFunction(request):
+    if request.method == 'GET':
+        data = models.Friend.objects.all()
+
+        serializer = serializers.FriendSerializer(data, context={'request': request}, many=True)
+
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = serializers.FriendSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+            
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 # Generics
 class FriendGenericslc(generics.ListCreateAPIView):
     queryset = models.Friend.objects.all()
