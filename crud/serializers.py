@@ -15,3 +15,16 @@ class BorrowedSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Borrowed
         fields = ('id', 'name', 'what', 'to_who', 'when', 'returned')
+
+class Student_ClassSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Student_Class
+        fields = ['room_number', 'time_table', 'course']
+
+class FacultySerializer(serializers.ModelSerializer):
+    student_class = Student_ClassSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = models.Faculty
+        fields = ['user', 'fname', 'lname', 'joining_date', 'mobile', 'student_class']
